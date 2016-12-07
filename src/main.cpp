@@ -26,17 +26,12 @@ int main(int argc, char* argv[]){
 		double number_Gj_base = Exp_G_gj*1e3/unitary_G_gj; // Total number of gap junctions - base value
 
 
-
-	/* Sigmoidal function */
-		int stim_cells = 20;
-
-		/* Seppey et al stimulation patter*/
 		double stim_interval[2];
-		stim_interval[1] = 81;
+		stim_interval[1] = 81; // Simulation time after stimulation
 
 	/* Simulation controlling parameters */
 		double tnow = 0.0; // Initial time , s
-		double interval = 1e-2; // Time interval, s
+		double interval = 1e-4; // Time interval, s
 		double tol_state = 1e-4; // Tolerance limit for the convergence in the iteration
 		double delay_ini = 50; // Time allowed for variables to converge
 		double delay = delay_ini; // Time allowed for variables to converge
@@ -46,10 +41,8 @@ int main(int argc, char* argv[]){
 		double count_stim = 0; // control variable for the loop
 		double count_delay = 0; // control variable for the loop
 		int tol_count = 0; // Control varialbe for fixed point iteration
-		double file_write_freq = 0.1; // File writing frequency, s
+		double file_write_freq = 0.01; // File writing frequency, s
 		int folder_status; // variable to check the successful creartion of folder
-
-
 
 
 
@@ -70,6 +63,7 @@ int main(int argc, char* argv[]){
 		int par_tot; // total number of parameters in all the cells
 
 		num_cell[0]	= 1600; // Total number of SMCs
+		int stim_cells = 20; // Number of stimulated cells
 
 		var_tot	= num_cell[0] * num_var[0];
 	 	par_tot	= num_cell[0] * num_par[0];
@@ -81,12 +75,12 @@ int main(int argc, char* argv[]){
 
 		/* Creating main folder */
 		sprintf(main_folder,"%3.1fs_%1.4fs",tfinal,interval);
-		/*folder_status = mkdir(main_folder,0777);
+		folder_status = mkdir(main_folder,0777);
 			if(folder_status == -1)
 				{
 				perror("Couldn't create sub-directory");
 				return -1;
-				}*/
+				}
 
 			/* Creating subfolder to save all the files for each loop */
 			sprintf(sub_folder,"%s/%3.1fnM_%3.1fe-19m3s-1",main_folder,nonstim_NE,IP_GJ/1e-19);
@@ -151,7 +145,7 @@ int main(int argc, char* argv[]){
 			while (tnow <= tfinal)
 			{
 
-				// Assign agonist concentration of the cells to the value before the stimulation
+				// Assign spatial distribution of agonist concentration after the stimulation
 				if (tnow >= stim && count_stim < 1)
 				{
 
@@ -167,7 +161,7 @@ int main(int argc, char* argv[]){
 					fclose(fL);
 				}
 
-				// Assigning spatial distribution of agonist concentration to the cells - sigmoidal distribution
+				// Assign spatial distribution of agonist concentration for the stimulation
 				else if (tnow >= (delay) && count_delay < 1)
 				{
 					fprintf(fL,"%f\t",tnow);
@@ -194,7 +188,7 @@ int main(int argc, char* argv[]){
 					tol_count = 2;
 					if (tnow<delay_ini)
 					{
-						singlecell(tnow, interval); // Single cell simulation to all cells to converge variables
+						singlecell(tnow, interval); // Single cell simulation
 					}
 					else
 					{
