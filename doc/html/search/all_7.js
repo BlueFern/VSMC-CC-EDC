@@ -11,7 +11,6 @@ var searchData=
   ['i_5fserca',['I_serca',['../macros_8h.html#a4c4ec871fc969cf6671dd484b4c4cf42',1,'macros.h']]],
   ['i_5fsrleak',['I_srleak',['../macros_8h.html#acc7ec544fb1a8b146a7d43eab48bbce0',1,'macros.h']]],
   ['i_5fvocc',['I_vocc',['../macros_8h.html#a0e9ddd1af6a9a6bf255435ed48be5695',1,'macros.h']]],
-  ['initialize',['initialize',['../Initializing_8cpp.html#a9182ac3bb7513829e2df115249172c71',1,'Initializing.cpp']]],
   ['initializing_2ecpp',['Initializing.cpp',['../Initializing_8cpp.html',1,'']]],
   ['ip2_5fgj',['IP2_GJ',['../Model__constants_8h.html#a1aa4d0996440daf6037875985394ebe5',1,'Model_constants.h']]],
   ['ip3_5fp',['IP3_P',['../Memory__allocation_8cpp.html#a15822fa84ddd287c4889467d1dc84932',1,'IP3_P():&#160;computelib.h'],['../Multicell_8cpp.html#a15822fa84ddd287c4889467d1dc84932',1,'IP3_P():&#160;computelib.h']]],
